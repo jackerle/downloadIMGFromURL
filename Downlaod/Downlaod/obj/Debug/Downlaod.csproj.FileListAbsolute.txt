@@ -1,0 +1,7 @@
+E:\codestrg\C#(vs)\Downlaod\Downlaod\bin\Debug\Downlaod.exe.config
+E:\codestrg\C#(vs)\Downlaod\Downlaod\bin\Debug\Downlaod.exe
+E:\codestrg\C#(vs)\Downlaod\Downlaod\bin\Debug\Downlaod.pdb
+E:\codestrg\C#(vs)\Downlaod\Downlaod\obj\Debug\Downlaod.csprojResolveAssemblyReference.cache
+E:\codestrg\C#(vs)\Downlaod\Downlaod\obj\Debug\Downlaod.csproj.CoreCompileInputs.cache
+E:\codestrg\C#(vs)\Downlaod\Downlaod\obj\Debug\Downlaod.exe
+E:\codestrg\C#(vs)\Downlaod\Downlaod\obj\Debug\Downlaod.pdb
