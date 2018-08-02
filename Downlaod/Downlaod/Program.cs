@@ -53,7 +53,9 @@ namespace Downlaod
         {
             using(WebClient wc = new WebClient())
             {
+                Console.Write("input URL :");
                 string _url = Console.ReadLine();               //read url
+                Console.Write("input folderName :");
                 string _name = Console.ReadLine();              //read name for folder
                 mkeDirectory(_name);                            //make dir
                 Program pg = new Program();
