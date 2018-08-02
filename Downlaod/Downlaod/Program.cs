@@ -14,12 +14,13 @@ namespace Downlaod
 {
     class Program
     {
-        int i = 0;
+        int i = 0;                  //page count
         WebClient wci = new WebClient();
+        static string path;             //directory for img
         static String cutOut(String n)
         {
             int first = n.IndexOf("http");
-            int last = n.LastIndexOf("\"");
+            int last = n.LastIndexOf("\"");                 //this patten for webtoon
             string result = n.Substring(first, last - first);
             return result;
         }
@@ -27,7 +28,7 @@ namespace Downlaod
         {
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             HttpWebResponse res = (HttpWebResponse)req.GetResponse();
-            StreamReader sr = new StreamReader(res.GetResponseStream());
+            StreamReader sr = new StreamReader(res.GetResponseStream());            // for req and res for get srccode from url
             string srccode = sr.ReadToEnd();
             sr.Close();
             res.Close();
@@ -37,28 +38,30 @@ namespace Downlaod
         {
             using (WebClient wci = new WebClient())
             {
-                wci.Headers["Referer"] = "https://webtoon-phinf.pstatic.net";
-                 wci.DownloadFile(dl, "img_" + i + ".jpg");
+                wci.Headers["Referer"] = "https://webtoon-phinf.pstatic.net";           //setHeader
+                 wci.DownloadFile(dl, path+"\\img_" + i + ".jpg");                      //download file (url,path)
                 Console.WriteLine("download " + i + "success");
                 i++;
             }
+        }
+        static void mkeDirectory(string name)
+        {
+            path = "E:\\IMGfromURL\\" + name;
+            DirectoryInfo di = Directory.CreateDirectory(path);
         }
         static void Main(string[] args)
         {
             using(WebClient wc = new WebClient())
             {
+                string _url = Console.ReadLine();               //read url
+                string _name = Console.ReadLine();              //read name for folder
+                mkeDirectory(_name);                            //make dir
                 Program pg = new Program();
                 wc.Headers["Referer"] = "https://webtoon-phinf.pstatic.net";
-                String src = getSourceCode("https://www.webtoons.com/th/romance/gangnam-beauty/%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%9E%E0%B9%80%E0%B8%A8%E0%B8%A9-ep02/viewer?title_no=792&episode_no=88");
-                /*int last = _src.IndexOf("viewer_ad_area");
-                int first = _src.IndexOf("_imageList");
-                String src = _src.Substring(first,last-first);*/
-                //string _pattern = @"/class=\"_images\" data-url=\"(.+)\"\\s(?=rel)/gim";
-                string first = "class=\"";
-                string image = "_images";
-                string third = "\" data-url=\"(.+)\"\\s(?=rel)";
+                String src = getSourceCode(_url);               //getSrccode
+                string first = "class=\"";  string image = "_images"; string third = "\" data-url=\"(.+)\"\\s(?=rel)"; // this for webtoon
                 string pattern = first+image+third;
-                Regex rgx = new Regex(pattern);
+                Regex rgx = new Regex(pattern);                 //use regex for cut string
                 Match match = rgx.Match(src);
                 if (match.Success)
                 {
@@ -68,6 +71,7 @@ namespace Downlaod
                         //Console.WriteLine(cutOut(m.Value));
                         pg.downloads(cutOut(m.Value));
                 }
+                Console.WriteLine("All download has success!");
                 
                 
                 Console.ReadKey();
