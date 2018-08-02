@@ -74,7 +74,7 @@ namespace Downlaod
                         pg.downloads(cutOut(m.Value));
                 }
                 Console.WriteLine("All download has success!");
-                
+                Console.WriteLine("Press any key to continue");
                 
                 Console.ReadKey();
                 /*wc.Headers["Referer"] = "http://nekopost.net";
