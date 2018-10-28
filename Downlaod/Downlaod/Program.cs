@@ -67,27 +67,14 @@ namespace Downlaod
                 Match match = rgx.Match(src);
                 if (match.Success)
                 {
-                    //Console.WriteLine(cutOut(match.Value));
                     pg.downloads(cutOut(match.Value));
                     foreach (Match m in rgx.Matches(src, match.Index + match.Length))
-                        //Console.WriteLine(cutOut(m.Value));
                         pg.downloads(cutOut(m.Value));
                 }
                 Console.WriteLine("All download has success!");
                 Console.WriteLine("Press any key to continue");
                 
                 Console.ReadKey();
-                /*wc.Headers["Referer"] = "http://nekopost.net";
-                    wc.DownloadFile("http://www.nekopost.net/file_server/collectManga/4823/46751/1.jpg", "test.jpg");
-                    Console.WriteLine("Succes");
-                    Console.ReadKey();*/
-                //wc.Headers["Referer"] = "https://webtoon-phinf.pstatic.net";
-                /*wc.Headers.Add("Referer", "https://webtoon-phinf.pstatic.net");
-                    wc.DownloadFile("https://webtoon-phinf.pstatic.net/20180720_4/1532090383511O5k3e_JPEG/15320903834861356168.jpg?type=q90", "test.jpg");
-                    Console.WriteLine("Succes");
-                    Console.ReadKey();*/
-
-
             }
         }
     }
